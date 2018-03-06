@@ -1,5 +1,5 @@
 {
-  "name": "Stackless",
+  "name": "stackless",
   "version": "1.0.0",
   "description": "Stackless",
   "main": "src/index.js",
@@ -7,7 +7,7 @@
   "email": "shwayze@yandex.ru",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alishermuhamed/stackoverflow-react.git"
+    "url": "https://github.com/alishermuhamed/stackless.git"
   },
   "license": "BSD-3-Clause",
   "engines": {
@@ -38,7 +38,6 @@
     "babel-eslint": "^8.2.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "eslint": "^4.18.2",
