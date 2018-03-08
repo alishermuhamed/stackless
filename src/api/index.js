@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { BASE_URL } from '../constants';
 
-export const complexSearch = ({
+const complexSearch = ({
   pagesize = 10,
   order = 'desc',
   sort = 'activity',
@@ -12,3 +12,5 @@ export const complexSearch = ({
       `&sort=${sort}&q=${q}&site=stackoverflow`
   );
 };
+
+export default complexSearch;
