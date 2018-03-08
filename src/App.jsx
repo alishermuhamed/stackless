@@ -2,11 +2,11 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import {
-  QuestionsList,
+  NavigationBar,
   Question,
-  User,
-  NavigationBar
-} from './containers/index';
+  QuestionsList,
+  UserProfile
+} from './containers';
 import configureStore from './store';
 
 const store = configureStore();
@@ -19,7 +19,7 @@ const App = () => (
         <Route exact path="/" component={QuestionsList} />
         <Route path="/search/q=:search" component={QuestionsList} />
         <Route path="/questions/:id" component={Question} />
-        <Route path="/users/:id" component={User} />
+        <Route path="/users/:id" component={UserProfile} />
       </div>
     </Router>
   </Provider>
