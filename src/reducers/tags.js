@@ -1,12 +1,12 @@
 import * as types from '../constants';
 
-const questions = (state = {}, action) => {
+const tags = (state = {}, action) => {
   switch (action.type) {
-    case types.REQUEST_QUESTIONS:
+    case types.REQUEST_TAGS:
       return Object.assign({}, state, {
         isFetching: true
       });
-    case types.RECEIVE_QUESTIONS:
+    case types.RECEIVE_TAGS:
       return Object.assign({}, state, {
         isFetching: false,
         items: action.items
@@ -16,4 +16,4 @@ const questions = (state = {}, action) => {
   }
 };
 
-export default questions;
+export default tags;

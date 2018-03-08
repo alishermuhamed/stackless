@@ -1,25 +1,28 @@
 import React from 'react';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunkMiddleware from 'redux-thunk';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import {
-  NavigationBar,
-  Question,
-  QuestionsList,
-  UserProfile
+  QuestionsList
+  // Layout containing SideBar, SearchBar and FilterBar
+  // Question,
+  // User
 } from './containers';
-import configureStore from './store';
+import combinedReducers from './reducers';
 
-const store = configureStore();
+const store = createStore(combinedReducers, applyMiddleware(thunkMiddleware));
 
 const App = () => (
   <Provider store={store}>
     <Router>
       <div>
-        <Route path="/" component={NavigationBar} />
         <Route exact path="/" component={QuestionsList} />
+        {/* <Route path="/" component={SideBar} />
         <Route path="/search/q=:search" component={QuestionsList} />
-        <Route path="/questions/:id" component={Question} />
-        <Route path="/users/:id" component={UserProfile} />
+        <Route path="/tag/:tag" component={QuestionsList} />
+        <Route path="/:id" component={Question} />
+        <Route path="/users/:id" component={User} /> */}
       </div>
     </Router>
   </Provider>

@@ -1,16 +1,19 @@
 import { QuestionsList } from './QuestionsList';
-import { NavigationBar } from './NavigationBar';
 import { Question } from './Question';
-import { UserProfile } from './UserProfile';
+import { User } from './User';
+import { SideBar } from './SideBar';
+//import { NavigationBar } from './NavigationBar';
 
 export { default as QuestionsList } from './QuestionsList';
-export { default as NavigationBar } from './NavigationBar';
 export { default as Question } from './Question';
-export { default as UserProfile } from './UserProfile';
+export { default as User } from './User';
+export { default as SideBar } from './SideBar';
+//export { default as NavigationBar } from './NavigationBar';
 
 export default {
   QuestionsList,
-  NavigationBar,
   Question,
-  UserProfile
+  User,
+  SideBar
+  //NavigationBar,
 };
