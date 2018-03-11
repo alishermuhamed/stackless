@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Stackless",
   "main": "src/index.js",
-  "author": "Fokin Aleksandr",
+  "author": "alishermuhamed",
   "email": "shwayze@yandex.ru",
   "repository": {
     "type": "git",
@@ -56,7 +56,6 @@
     "stylelint": "^8.4.0"
   },
   "dependencies": {
-    "axios": "^0.18.0",
     "cross-fetch": "^2.0.0",
     "immutable": "^3.8.2",
     "prop-types": "^15.6.1",
