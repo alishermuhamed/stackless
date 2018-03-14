@@ -5,7 +5,7 @@ import { QuestionItem } from '../index';
 
 const QuestionsList = ({ items, isFetching, errorMessage }) => {
   if (errorMessage) {
-    return <h2>Api error occurred: {errorMessage}</h2>;
+    return <h2>Api error occurred: {errorMessage.toString()}</h2>;
   } else if (isFetching) {
     return <h2>Loading...</h2>;
   } else if (items.count() === 0) {
@@ -23,7 +23,7 @@ const QuestionsList = ({ items, isFetching, errorMessage }) => {
 QuestionsList.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   items: PropTypes.instanceOf(List),
-  error: PropTypes.string
+  error: PropTypes.node
 };
 
 QuestionsList.defaultProps = {

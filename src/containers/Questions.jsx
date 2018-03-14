@@ -9,8 +9,13 @@ import { getQuestionItems, getQuestions } from '../selectors';
 class Questions extends React.PureComponent {
   static propTypes = {
     fetchQuestions: PropTypes.func.isRequired,
-    questions: PropTypes.instanceOf(Map).isRequired,
-    items: PropTypes.instanceOf(List).isRequired
+    questions: PropTypes.instanceOf(Map),
+    items: PropTypes.instanceOf(List)
+  };
+
+  static defaultProps = {
+    questions: Map(),
+    items: List()
   };
 
   componentDidMount() {

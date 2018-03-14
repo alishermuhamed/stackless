@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "Stackless",
   "main": "src/index.js",
-  "author": "alishermuhamed",
-  "email": "shwayze@yandex.ru",
+  "contributors": [
+    { "name": "Alisher Mukhametzhanov" },
+    { "name": "Alexander Fokin" },
+    { "name": "Evgeniy Filippov" },
+    { "name": "Alexey Pervakov" },
+    { "name": "Anna Ignatenkova" }
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/alishermuhamed/stackless.git"
