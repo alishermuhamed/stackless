@@ -4,11 +4,11 @@
   "description": "Stackless",
   "main": "src/index.js",
   "contributors": [
-    { "name": "Alisher Mukhametzhanov" },    
+    { "name": "Alisher Mukhametzhanov" },
     { "name": "Alexander Fokin" },
     { "name": "Evgeniy Filippov" },
     { "name": "Alexey Pervakov" },
-    { "name": "Anna Ignatenkova" }    
+    { "name": "Anna Ignatenkova" }
   ],
   "repository": {
     "type": "git",
@@ -19,10 +19,6 @@
     "node": ">=8.9.0 <=9.4.0",
     "npm": "npm >=5.6.0"
   },
-  "pre-commit": [
-    "lint-fix",
-    "lint"
-  ],
   "scripts": {
     "start": "npm run clean:tmp && parcel src/index.html -p 3000 --out-dir .tmp",
     "build": "npm run lint && npm run clean && npm run build:parcel",
@@ -38,11 +34,12 @@
     "build:parcel": "parcel build src/index.html --out-dir build --no-cache"
   },
   "devDependencies": {
-    "ajv": "^6.2.0",
+    "ajv": "^6.2.1",
     "autoprefixer": "^7.2.5",
     "babel-eslint": "^8.2.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "eslint": "^4.18.2",
@@ -54,14 +51,13 @@
     "eslint-plugin-react": "^7.6.1",
     "parcel-bundler": "^1.4.1",
     "postcss-modules": "^1.1.0",
-    "pre-commit": "^1.2.2",
     "prettier": "^1.11.1",
     "prettier-stylelint": "^0.4.2",
     "rimraf": "^2.6.2",
     "stylelint": "^8.4.0"
   },
   "dependencies": {
-    "cross-fetch": "^2.0.0",
+    "axios": "^0.18.0",
     "immutable": "^3.8.2",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",

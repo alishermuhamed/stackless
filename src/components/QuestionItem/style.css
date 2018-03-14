@@ -1,0 +1,58 @@
+.listItem {
+  margin: 5px;
+  border-bottom: 1px solid grey;
+  font-family: 'Arial', 'Helvetica', sans-serif;
+}
+
+.listItem .statsContainer {
+  float: left;
+}
+
+.listItem .summaryContainer {
+  float: left;
+  padding: 10px;
+}
+
+.itemCounter {
+  width: 58px;
+  margin-bottom: 8px;
+  padding: 7px 0 5px;
+  text-align: center;
+  font-size: 11px;
+  color: #6a737c;
+  border: 0;
+}
+
+.itemCounter strong {
+  margin: 0 0 3px;
+  font-size: 20px;
+}
+
+.listItem a {
+  text-decoration: none;
+}
+
+.listItem a:link {
+  color: #0077cc;
+}
+
+.listItem a:visited {
+  color: #005999;
+}
+
+.listItem a:hover {
+  color: #33aaff;
+}
+
+.listItem a:active {
+  color: #33aaff;
+}
+
+.listItem h2.title {
+  display: block;
+  margin: 0 0 5px;
+  padding: 0;
+  text-align: left;
+  font-size: 24px;
+  border: 0;
+}

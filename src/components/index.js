@@ -1,22 +1,19 @@
-import { SearchBar } from './SearchBar';
-import { FilterBar } from './FilterBar';
-import { SideBar } from './SideBar';
-import { List } from './List';
-import { Question } from './Question';
-import { User } from './User';
+import { QuestionAuthor } from './QuestionAuthor/QuestionAuthor';
+import { QuestionItem } from './QuestionItem/QuestionItem';
+import { QuestionsList } from './QuestionsList/QuestionsList';
+import { SearchBar } from './SearchBar/SearchBar';
+import { TextBox } from './TextBox/TextBox';
 
-export { default as SearchBar } from './SearchBar';
-export { default as FilterBar } from './FilterBar';
-export { default as SideBar } from './SideBar';
-export { default as List } from './List';
-export { default as Question } from './Question';
-export { default as User } from './User';
+export { default as QuestionAuthor } from './QuestionAuthor/QuestionAuthor';
+export { default as QuestionItem } from './QuestionItem/QuestionItem';
+export { default as QuestionsList } from './QuestionsList/QuestionsList';
+export { default as SearchBar } from './SearchBar/SearchBar';
+export { default as TextBox } from './TextBox/TextBox';
 
 export default {
+  QuestionAuthor,
+  QuestionItem,
+  QuestionsList,
   SearchBar,
-  FilterBar,
-  SideBar,
-  List,
-  Question,
-  User
+  TextBox
 };
