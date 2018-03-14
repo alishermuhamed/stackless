@@ -36,10 +36,12 @@ const fetchQuestions = ({
           `&closed=${closed}&site=stackoverflow` +
           `&filter=!.FjwPGLxmyYTh_1x.CPOGnXs*)C_y${types.KEY}`
       )
-      .then(json => dispatch(receiveQuestions(json)))
+      .then(json => {
+        dispatch(receiveQuestions(json.data));
+      })
       .catch(err => {
-        console.error(err);
-        dispatch(requestQuestionsFailed(err));
+        console.log(err);
+        return dispatch(requestQuestionsFailed(err));
       });
   };
 };
