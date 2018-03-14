@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { TextBox } from '../components';
+import { TextBox } from '..';
 
 class SearchBar extends React.PureComponent {
   state = {
