@@ -34,7 +34,7 @@
     "build:parcel": "parcel build src/index.html --out-dir build --no-cache"
   },
   "devDependencies": {
-    "ajv": "^6.2.0",
+    "ajv": "^6.2.1",
     "autoprefixer": "^7.2.5",
     "babel-eslint": "^8.2.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -51,7 +51,6 @@
     "eslint-plugin-react": "^7.6.1",
     "parcel-bundler": "^1.4.1",
     "postcss-modules": "^1.1.0",
-    "pre-commit": "^1.2.2",
     "prettier": "^1.11.1",
     "prettier-stylelint": "^0.4.2",
     "rimraf": "^2.6.2",
