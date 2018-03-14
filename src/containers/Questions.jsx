@@ -6,7 +6,7 @@ import fetchQuestions from '../actions/questions';
 import { QuestionsList } from '../components';
 import { getQuestionItems, getQuestions } from '../selectors';
 
-class Questions extends React.PureComponent {
+class Questions extends React.Component {
   static propTypes = {
     fetchQuestions: PropTypes.func.isRequired,
     questions: PropTypes.instanceOf(Map),
