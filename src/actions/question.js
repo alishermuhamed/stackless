@@ -1,4 +1,4 @@
-import fetch from 'cross-fetch';
+import axios from 'axios';
 import * as types from '../constants';
 
 function requestQuestion() {
@@ -7,22 +7,32 @@ function requestQuestion() {
   };
 }
 
-function receiveQuestion(json) {
+function receiveQuestion(data) {
   return {
     type: types.RECEIVE_QUESTION,
-    question: json.items[0]
+    question: data.items[0]
+  };
+}
+
+function receiveQuestionError(error) {
+  return {
+    type: types.RECEIVE_QUESTION_ERROR,
+    error
   };
 }
 
 export default function fetchQuestion(id) {
   return dispatch => {
     dispatch(requestQuestion());
-    return fetch(`
-      ${
-        types.BASE_URL
-      }questions/${id}?order=desc&sort=activity&site=stackoverflow&filter=!SCZ)Qj709ZvesrSx8k1jzIxhrz6tgv6)OS.7fKCIwB5HCshQ8Ew2oaFze_U7iVae
-    `)
-      .then(response => response.json(), err => alert(err))
-      .then(json => dispatch(receiveQuestion(json), err => alert(err))); // Read json and if it contains error then dispatch error
+    return axios
+      .get(
+        `${
+          types.BASE_URL
+        }questions/${id}?order=desc&sort=activity&site=stackoverflow&filter=!-lBwSMnedIpLk8ZyeX8Bj5(Pnwri1)nmwFrnCOvfxTcVEgZ.Oc-tqP`
+      )
+      .then(
+        response => dispatch(receiveQuestion(response.data)),
+        err => dispatch(receiveQuestionError(err.response.data))
+      );
   };
 }

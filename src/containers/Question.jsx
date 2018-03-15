@@ -11,20 +11,31 @@ class Question extends React.Component {
   }
 
   render() {
-    return <QuestionComponent question={this.props.question} />;
+    const { isFetching, error, question } = this.props;
+    return (
+      <QuestionComponent
+        isFetching={isFetching}
+        error={error}
+        question={question}
+      />
+    );
   }
 }
 
 Question.propTypes = {
   dispatch: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
-  question: PropTypes.object.isRequired // should I declare all the PropTypes in every component?
+  isFetching: PropTypes.bool.isRequired,
+  error: PropTypes.object,
+  question: PropTypes.object
 };
 
 const mapStateToProps = ({ question }, ownProps) => {
   return {
     id: ownProps.match.params.id,
-    question: question
+    isFetching: question.isFetching,
+    error: question.error,
+    question: question.item
   };
 };
 
