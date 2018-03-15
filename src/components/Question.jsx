@@ -28,8 +28,8 @@ const Question = ({ isFetching, error, question }) => {
 
 Question.propTypes = {
   isFetching: PropTypes.bool.isRequired,
-  question: PropTypes.shapeOf(),
-  error: PropTypes.shapeOf()
+  question: PropTypes.object,
+  error: PropTypes.object
 };
 
 Question.defaultProps = {
