@@ -82,12 +82,3 @@ const requestQuestionsFailed = err => ({
 });
 
 export default fetchQuestions;
-
-
-const requestUserInfo =(id) => {
-  const url = 'https://api.stackexchange.com/2.2/users/'+`${match.params.id}`+'?order=desc&sort=creation&site=stackoverflow&filter=!)scWyX4tXd._RgHyXMor'
-  const searchMovies = (url) => {
-    return axios.get(url);
-  }
-  
-}
