@@ -4,11 +4,21 @@
   "description": "Stackless",
   "main": "src/index.js",
   "contributors": [
-    { "name": "Alisher Mukhametzhanov" },
-    { "name": "Alexander Fokin" },
-    { "name": "Evgeniy Filippov" },
-    { "name": "Alexey Pervakov" },
-    { "name": "Anna Ignatenkova" }
+    {
+      "name": "Alisher Mukhametzhanov"
+    },
+    {
+      "name": "Alexander Fokin"
+    },
+    {
+      "name": "Evgeniy Filippov"
+    },
+    {
+      "name": "Alexey Pervakov"
+    },
+    {
+      "name": "Anna Ignatenkova"
+    }
   ],
   "repository": {
     "type": "git",

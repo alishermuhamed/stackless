@@ -2,17 +2,32 @@
   margin: 5px;
   border-bottom: 1px solid grey;
   font-family: 'Arial', 'Helvetica', sans-serif;
+  display:flex;
+  align-items: center;
 }
 
-.listItem .statsContainer {
-  float: left;
+.authorDetails {
+  margin-top: -15px;
 }
+.itemAuthor {
+  display:flex;
+  align-items:center;
+  margin-top: 11px;
+  margin-right: 18px;
 
+}
 .listItem .summaryContainer {
-  float: left;
+  display:flex;
+  flex-direction:column;
+  position: relative;
+  min-height: 130px;
   padding: 10px;
 }
-
+.listItem img {
+  width: 50px;
+  height:50px;
+  margin-right:20px;
+}
 .itemCounter {
   width: 58px;
   margin-bottom: 8px;
@@ -55,4 +70,11 @@
   text-align: left;
   font-size: 24px;
   border: 0;
+}
+
+.summaryContainer p {
+  display: inline-block;
+    position: absolute;
+   bottom: 5%;
+    left: 80px;
 }
