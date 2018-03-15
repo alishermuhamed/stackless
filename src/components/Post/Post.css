@@ -1,0 +1,11 @@
+.body {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid;
+  width: 1000px;
+}
+
+.tag {
+  margin-right: 5px;
+  background: lightblue;
+}
