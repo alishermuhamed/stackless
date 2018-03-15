@@ -39,7 +39,7 @@ class Questions extends React.Component {
     return (
       <div>
         <QuestionsList
-          items={items}
+          questions={items}
           errorMessage={questions.get('error')}
           isFetching={questions.get('isFetching')}
         />

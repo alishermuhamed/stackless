@@ -2,20 +2,19 @@ import React from 'react';
 import { Map } from 'immutable';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { QuestionAuthor } from '../index';
 import './style.css';
 
-const QuestionItem = ({ item }) => {
+const QuestionItem = ({ question, Author }) => {
   return (
     <div className="listItem">
       <div className="statsContainer">
         <div className="itemCounter">
-          <strong>{item.get('score')}</strong>
+          <strong>{question.get('score')}</strong>
           <br />
           votes
         </div>
         <div className="itemCounter">
-          <strong>{item.get('answer_count')}</strong>
+          <strong>{question.get('answer_count')}</strong>
           <br />
           answers
         </div>
@@ -23,18 +22,14 @@ const QuestionItem = ({ item }) => {
       <div className="summaryContainer">
         <h2 className="title">
           <NavLink
-            to={`/questions/${item.get('question_id')}`}
-            href={`/questions/${item.get('question_id')}`}
+            to={`/questions/${question.get('question_id')}`}
+            href={`/questions/${question.get('question_id')}`}
           >
-            {item.get('title')}
+            {question.get('title')}
           </NavLink>
         </h2>
-        <QuestionAuthor
-          userId={item.getIn(['owner', 'user_id'])}
-          displayName={item.getIn(['owner', 'display_name'])}
-          profileImage={item.getIn(['owner', 'profile_image'])}
-        />
-        <p>asked {item.get('creation_date')}</p>
+        {Author}
+        <p>asked {question.get('creation_date')}</p>
       </div>
       <div style={{ clear: 'both' }} />
     </div>
@@ -42,7 +37,12 @@ const QuestionItem = ({ item }) => {
 };
 
 QuestionItem.propTypes = {
-  item: PropTypes.instanceOf(Map).isRequired
+  question: PropTypes.instanceOf(Map).isRequired,
+  Author: PropTypes.element
+};
+
+QuestionItem.defaultProps = {
+  Author: undefined
 };
 
 export default QuestionItem;
