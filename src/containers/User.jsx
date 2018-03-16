@@ -15,11 +15,7 @@ import {
 
 class User extends React.Component {
   static propTypes = {
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        id: PropTypes.string.isRequired
-      })
-    }).isRequired,
+    id: PropTypes.string.isRequired,
     fetchUser: PropTypes.func.isRequired,
     userInfo: PropTypes.instanceOf(Map),
     questions: PropTypes.instanceOf(List),
@@ -30,7 +26,7 @@ class User extends React.Component {
   };
 
   static defaultProps = {
-    userInfo: Map(),
+    userInfo: undefined,
     questions: List(),
     allTimeScore: undefined,
     allTimeAnswers: undefined,
@@ -38,8 +34,8 @@ class User extends React.Component {
   };
 
   componentDidMount() {
-    const { fetchUser, match } = this.props;
-    fetchUser(match.params.id);
+    const { fetchUser, id } = this.props;
+    fetchUser(id);
   }
 
   render() {
@@ -66,7 +62,8 @@ class User extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
+  id: ownProps.match.params.id,
   userInfo: getInfo(state),
   questions: getQuestions(state),
   error: getErrorMessage(state),
