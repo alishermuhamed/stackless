@@ -20,7 +20,9 @@ const fetchUser = id => {
         const answersCount = resultArray[1].total;
         const questionArray = resultArray[2].items;
         if (questionArray.length === 0)
-          return Promise.reject({ message: 'У пользователя нет вопросов' });
+          return Promise.reject({
+            message: 'User does not have any questions'
+          });
 
         const userInfo = {
           ...questionArray[0].owner,

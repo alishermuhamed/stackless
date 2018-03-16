@@ -11,7 +11,7 @@ const QuestionsList = ({
   errorMessage
 }) => {
   if (errorMessage) {
-    return <h2>Упссс, что-то пошло не так: {errorMessage.toString()}</h2>;
+    return <h2>Ooops! Something went wrong: {errorMessage.toString()}</h2>;
   } else if (isFetching) {
     return <h2>Loading...</h2>;
   } else if (questions.count() === 0) {
@@ -47,7 +47,7 @@ QuestionsList.propTypes = {
   questions: PropTypes.instanceOf(List),
   allTimeScore: PropTypes.number,
   allTimeAnswers: PropTypes.number,
-  error: PropTypes.node
+  errorMessage: PropTypes.string
 };
 
 QuestionsList.defaultProps = {
