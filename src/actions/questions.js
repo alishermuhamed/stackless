@@ -40,8 +40,7 @@ const fetchQuestions = ({
         dispatch(receiveQuestions(json.data));
       })
       .catch(err => {
-        console.log(err);
-        return dispatch(requestQuestionsFailed(err));
+        dispatch(requestQuestionsFailed(err));
       });
   };
 };
@@ -77,7 +76,7 @@ const receiveQuestions = json => ({
 });
 
 const requestQuestionsFailed = err => ({
-  type: types.REQUEST_QUESTIONS_FAILED,
+  type: types.REQUEST_QUESTIONS_ERROR,
   payload: err
 });
 
