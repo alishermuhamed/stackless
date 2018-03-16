@@ -38,7 +38,7 @@ const QuestionItem = ({ question, Author }) => {
 
 QuestionItem.propTypes = {
   question: PropTypes.instanceOf(Map).isRequired,
-  Author: PropTypes.element
+  Author: PropTypes.oneOfType([PropTypes.element, PropTypes.bool])
 };
 
 QuestionItem.defaultProps = {

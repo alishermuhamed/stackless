@@ -1,7 +1,7 @@
-import { fromJS } from 'immutable';
+import { Map, List } from 'immutable';
 import * as types from '../constants';
 
-const initialState = fromJS({
+const initialState = Map({
   isFetching: false,
   page: 1,
   pageSize: 10,
@@ -12,15 +12,15 @@ const initialState = fromJS({
   q: '',
   accepted: '',
   closed: '',
-  items: []
+  items: List()
 });
 
 const questions = (state = initialState, { type, payload }) => {
   switch (type) {
     case types.REQUEST_QUESTIONS:
       return state.set('isFetching', true).merge(payload);
-    case types.REQUEST_QUESTIONS_FAILED:
-      return fromJS({
+    case types.REQUEST_QUESTIONS_ERROR:
+      return Map({
         isFetching: false,
         error: payload
       });

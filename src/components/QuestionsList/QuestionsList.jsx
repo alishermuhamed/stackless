@@ -3,9 +3,15 @@ import { List } from 'immutable';
 import PropTypes from 'prop-types';
 import { QuestionItem, QuestionAuthor } from '../index';
 
-const QuestionsList = ({ questions, isFetching, errorMessage }) => {
+const QuestionsList = ({
+  questions,
+  allTimeScore,
+  allTimeAnswers,
+  isFetching,
+  errorMessage
+}) => {
   if (errorMessage) {
-    return <h2>Api error occurred: {errorMessage.toString()}</h2>;
+    return <h2>Упссс, что-то пошло не так: {errorMessage.toString()}</h2>;
   } else if (isFetching) {
     return <h2>Loading...</h2>;
   } else if (questions.count() === 0) {
@@ -13,6 +19,10 @@ const QuestionsList = ({ questions, isFetching, errorMessage }) => {
   } else
     return (
       <div>
+        {!isNaN(allTimeScore) && <h1>Received votes total: {allTimeScore}</h1>}
+        {!isNaN(allTimeAnswers) && (
+          <h1>Received answers total: {allTimeAnswers}</h1>
+        )}
         {questions.map(question => (
           <QuestionItem
             key={question.get('question_id')}
@@ -35,12 +45,16 @@ const QuestionsList = ({ questions, isFetching, errorMessage }) => {
 QuestionsList.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   questions: PropTypes.instanceOf(List),
+  allTimeScore: PropTypes.number,
+  allTimeAnswers: PropTypes.number,
   error: PropTypes.node
 };
 
 QuestionsList.defaultProps = {
   errorMessage: '',
-  questions: List()
+  questions: List(),
+  allTimeScore: undefined,
+  allTimeAnswers: undefined
 };
 
 export default QuestionsList;

@@ -4,7 +4,7 @@ import { Map, List } from 'immutable';
 import PropTypes from 'prop-types';
 import fetchQuestions from '../actions/questions';
 import { QuestionsList } from '../components';
-import { getQuestionItems, getQuestions } from '../selectors';
+import { getQuestionItems, getQuestions } from '../selectors/questions';
 
 class Questions extends React.Component {
   static propTypes = {

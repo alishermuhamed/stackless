@@ -1,44 +1,60 @@
-import fetch from 'cross-fetch';
+import { fromJS } from 'immutable';
+import {
+  getUserQuestions,
+  getUserQuestionsCount,
+  getUserAnswersCount
+} from '../api';
 import * as types from '../constants';
 
-function requestUser() {
+const fetchUser = id => {
+  return dispatch => {
+    dispatch(requestUser());
+
+    return Promise.all([
+      getUserQuestionsCount(id),
+      getUserAnswersCount(id),
+      getUserQuestions(id)
+    ])
+      .then(resultArray => {
+        const questionsCount = resultArray[0].total;
+        const answersCount = resultArray[1].total;
+        const questionArray = resultArray[2].items;
+        if (questionArray.length === 0)
+          return Promise.reject({ message: 'У пользователя нет вопросов' });
+
+        const userInfo = {
+          ...questionArray[0].owner,
+          questionsCount: questionsCount,
+          answersCount: answersCount
+        };
+        const questions = questionArray.map(obj => {
+          delete obj.owner;
+          return obj;
+        });
+        return fromJS({
+          userInfo,
+          questions
+        });
+      })
+      .then(json => dispatch(receiveUser(json)))
+      .catch(err => dispatch(requestUserFailed(err.message)));
+  };
+};
+
+const requestUser = () => {
   return {
     type: types.REQUEST_USER
   };
-}
+};
 
-function receiveUser(json) {
-  return {
-    type: types.RECEIVE_USER,
-    user:json
-  };
-}
+const receiveUser = json => ({
+  type: types.RECEIVE_USER,
+  payload: json
+});
 
 const requestUserFailed = err => ({
-  type: types.REQUEST_USER_FAILED,
+  type: types.RECEIVE_USER_ERROR,
   payload: err
 });
 
-function fetchUser(id) {
-  return dispatch => {
-    dispatch(requestUser());
-    return fetch(
-      `${
-        types.BASE_URL
-      }users/${id}?order=desc&sort=creation&site=stackoverflow&filter=!)scWyX4tXd._RgHyXMor`
-    ) 
-      .then(response => response.json())
-      .then(json => dispatch(receiveUser(json)))
-      .catch(err => {
-        console.log(err);
-        return dispatch(requestQuestionsFailed(err));
-      });
-  };
-}
-
 export default fetchUser;
-//https://api.stackexchange.com/2.2/users/7122746?order=desc&sort=creation&site=stackoverflow&filter=!)scWyX4tXd._RgHyXMor
-
-
-
-// https://api.stackexchange.com/2.2/users/7122746/questions?order=desc&sort=activity&site=stackoverflow&filter=!BHMsVe-)xNO9rXmOcpxO8M(cSp6bHe&key=FWgOPj7j5DKXZG4DgyClig((

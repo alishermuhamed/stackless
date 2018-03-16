@@ -40,8 +40,7 @@ const fetchQuestions = ({
         dispatch(receiveQuestions(json.data));
       })
       .catch(err => {
-        console.log(err);
-        return dispatch(requestQuestionsFailed(err));
+        dispatch(requestQuestionsFailed(err));
       });
   };
 };
@@ -77,17 +76,8 @@ const receiveQuestions = json => ({
 });
 
 const requestQuestionsFailed = err => ({
-  type: types.REQUEST_QUESTIONS_FAILED,
+  type: types.REQUEST_QUESTIONS_ERROR,
   payload: err
 });
 
 export default fetchQuestions;
-
-
-const requestUserInfo =(id) => {
-  const url = 'https://api.stackexchange.com/2.2/users/'+`${match.params.id}`+'?order=desc&sort=creation&site=stackoverflow&filter=!)scWyX4tXd._RgHyXMor'
-  const searchMovies = (url) => {
-    return axios.get(url);
-  }
-  
-}
