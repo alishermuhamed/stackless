@@ -1,0 +1,11 @@
+.input {
+  width: 400px;
+  list-style: none;
+  border: none;
+  border-bottom: 1px solid gray;
+  margin:10px 30px;
+  outline:none;
+  height: 30px;
+  font-size: 20px;
+  
+}

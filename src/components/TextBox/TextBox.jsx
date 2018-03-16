@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './style.css';
 
 const TextBox = ({ name, value, onChange, placeholder }) => {
   return (
     <input
+    className="input"
       type="text"
       name={name}
       value={value}
