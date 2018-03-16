@@ -1,11 +1,34 @@
+.question {
+  padding-bottom:10px;
+  border-bottom:1px solid gray;
+}
 .body {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin:10px 0;
   border: 1px solid;
   width: 1000px;
+  background:lightgray;
+  padding:0px 10px 0 10px;
 }
-
+.title {
+  color:blue;
+  border-bottom:1px solid gray;
+}
+.tags {
+  display:flex;
+  justify-content:flex-end;
+}
 .tag {
   margin-right: 5px;
   background: lightblue;
+  text-decoration: none;
+  display:inline-block;
+}
+.author {
+  display:flex;
+  justify-content:flex-end;
+}
+.author__avatar {
+  width: 50px;
+  height: 50px;
+  margin-right:10px;
 }

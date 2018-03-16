@@ -5,11 +5,19 @@ import './style.css';
 
 const User = ({ info }) => {
   return (
-    <div>
-      <img src={info.get('profile_image')} alt="Avatar" />
-      <p>{info.get('display_name')}</p>
-      <p>questions: {info.get('questionsCount')}</p>
-      <p>answers: {info.get('answersCount')}</p>
+    <div className="user">
+      <img className="user__img" src={info.get('profile_image')} alt="Avatar" />
+      <div className="user__container">
+        <p className="user__name">{info.get('display_name')}</p>
+        <p className="user__question">
+            <span className="user__count"> {info.get('questionsCount')}</span> <br/>
+            <span className="text">questions</span>
+        </p>
+        <p className="user__answer">
+          <span className="user__count">{info.get('answersCount')}</span><br/>
+          <span className="text">answers</span> 
+        </p>
+      </div>
     </div>
   );
 };
