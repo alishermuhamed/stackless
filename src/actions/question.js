@@ -1,4 +1,4 @@
-import axios from 'axios';
+import getQuestion from '../api/question';
 import * as types from '../constants';
 
 function requestQuestion() {
@@ -24,15 +24,9 @@ function receiveQuestionError(error) {
 export default function fetchQuestion(id) {
   return dispatch => {
     dispatch(requestQuestion());
-    return axios
-      .get(
-        `${
-          types.BASE_URL
-        }questions/${id}?order=desc&sort=activity&site=stackoverflow&filter=!-lBwSMnedIpLk8ZyeX8Bj5(Pnwri1)nmwFrnCOvfxTcVEgZ.Oc-tqP`
-      )
-      .then(
-        response => dispatch(receiveQuestion(response.data)),
-        err => dispatch(receiveQuestionError(err.response.data))
-      );
+    return getQuestion(id).then(
+      response => dispatch(receiveQuestion(response)),
+      err => dispatch(receiveQuestionError(err.response.data))
+    );
   };
 }

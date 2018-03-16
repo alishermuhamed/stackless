@@ -5,15 +5,15 @@ import Comment from '../Comment';
 import './Post.css';
 
 const Post = props => {
-  return (
+  return ( <div className="question">
     <div className={props.isAccepted ? 'is-accepted' : ''}>
       {props.title && <h2 className="title">{props.title}</h2>}
-      <h3>{'Score: ' + props.score}</h3>
+      <h3 className="score">{'Score: ' + props.score}</h3>
       <div className="body" dangerouslySetInnerHTML={{ __html: props.body }} />
       {/* Replace with Owner component */}
-      <div>
-        <img src={props.owner.profileImage} alt="Author profile" />
-        <span>
+      <div className="author">
+        <img className="author__avatar"src={props.owner.profileImage} alt="Author profile" />
+        <span className="author__info">
           {props.owner.displayName +
             ' ' +
             props.owner.userId +
@@ -25,7 +25,7 @@ const Post = props => {
         {props.comments.length > 0 &&
           props.comments.map(com => <Comment key={com.body} {...com} />)}
       </div>
-      <div>
+      <div className="tags">
         {props.tags.length > 0 &&
           props.tags.map(tag => (
             <Link
@@ -39,6 +39,8 @@ const Post = props => {
           ))}
       </div>
     </div>
+    </div>
+    
   );
 };
 

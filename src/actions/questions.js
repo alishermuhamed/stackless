@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { Map, fromJS } from 'immutable';
+import getQuestions from '../api/questions';
 import * as types from '../constants';
 
 const fetchQuestions = ({
@@ -28,16 +28,19 @@ const fetchQuestions = ({
       })
     );
 
-    return axios
-      .get(
-        `${types.BASE_URL}search/advanced?page=${page}` +
-          `&pagesize=${pageSize}&fromdate=${fromDate}&todate=${toDate}` +
-          `&order=${order}&sort=${sort}&q=${q}&accepted=${accepted}` +
-          `&closed=${closed}&site=stackoverflow` +
-          `&filter=!.FjwPGLxmyYTh_1x.CPOGnXs*)C_y${types.KEY}`
-      )
-      .then(json => {
-        dispatch(receiveQuestions(json.data));
+    return getQuestions(
+      page,
+      pageSize,
+      fromDate,
+      toDate,
+      order,
+      sort,
+      q,
+      accepted,
+      closed
+    )
+      .then(data => {
+        dispatch(receiveQuestions(data));
       })
       .catch(err => {
         dispatch(requestQuestionsFailed(err));
