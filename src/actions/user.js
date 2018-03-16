@@ -3,7 +3,7 @@ import {
   getUserQuestions,
   getUserQuestionsCount,
   getUserAnswersCount
-} from '../api';
+} from '../api/user';
 import * as types from '../constants';
 
 const fetchUser = id => {
