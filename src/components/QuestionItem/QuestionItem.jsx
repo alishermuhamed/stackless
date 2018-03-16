@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import './style.css';
 
-const QuestionItem = ({ question, Author }) => {
+const QuestionItem = ({ question, render }) => {
   return (
     <div className="listItem">
       <div className="statsContainer">
@@ -28,7 +28,12 @@ const QuestionItem = ({ question, Author }) => {
             {question.get('title')}
           </NavLink>
         </h2>
-        {Author}
+        {question.has('owner') &&
+          render(
+            question.getIn(['owner', 'user_id']),
+            question.getIn(['owner', 'display_name']),
+            question.getIn(['owner', 'profile_image'])
+          )}
         <p>asked {question.get('creation_date')}</p>
       </div>
       <div style={{ clear: 'both' }} />
@@ -38,11 +43,7 @@ const QuestionItem = ({ question, Author }) => {
 
 QuestionItem.propTypes = {
   question: PropTypes.instanceOf(Map).isRequired,
-  Author: PropTypes.oneOfType([PropTypes.element, PropTypes.bool])
-};
-
-QuestionItem.defaultProps = {
-  Author: undefined
+  render: PropTypes.func.isRequired
 };
 
 export default QuestionItem;

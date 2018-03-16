@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { TextBox } from '..';
 import './style.css';
+
 class SearchBar extends React.PureComponent {
   state = {
     search: ''
@@ -26,7 +27,11 @@ class SearchBar extends React.PureComponent {
           onChange={this.handleChange}
           placeholder="Search..."
         />
-        <NavLink className="button" to={`/search/q=${search}`} href={`/search/q=${search}`}>
+        <NavLink
+          className="button"
+          to={`/search/q=${search}`}
+          href={`/search/q=${search}`}
+        >
           Search
         </NavLink>
       </div>

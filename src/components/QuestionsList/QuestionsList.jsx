@@ -27,15 +27,13 @@ const QuestionsList = ({
           <QuestionItem
             key={question.get('question_id')}
             question={question}
-            Author={
-              question.has('owner') && (
-                <QuestionAuthor
-                  userId={question.getIn(['owner', 'user_id'])}
-                  displayName={question.getIn(['owner', 'display_name'])}
-                  profileImage={question.getIn(['owner', 'profile_image'])}
-                />
-              )
-            }
+            render={(userId, displayName, profileImage) => (
+              <QuestionAuthor
+                userId={userId}
+                displayName={displayName}
+                profileImage={profileImage}
+              />
+            )}
           />
         ))}
       </div>
