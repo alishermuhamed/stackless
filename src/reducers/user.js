@@ -10,7 +10,7 @@ const initialState = Map({
 const user = (state = initialState, { type, payload }) => {
   switch (type) {
     case types.REQUEST_USER:
-      return state.set('isFetching', true);
+      return state.set('isFetching', true).delete('error');
     case types.RECEIVE_USER_ERROR:
       return Map({
         isFetching: false,

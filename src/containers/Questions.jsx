@@ -4,44 +4,42 @@ import { Map, List } from 'immutable';
 import PropTypes from 'prop-types';
 import fetchQuestions from '../actions/questions';
 import { QuestionsList } from '../components';
-import { getQuestionItems, getQuestions } from '../selectors/questions';
+import {
+  getErrorMessage,
+  getIsFetching,
+  getQuestions,
+  getSortParams
+} from '../selectors/questions';
 
 class Questions extends React.Component {
   static propTypes = {
     fetchQuestions: PropTypes.func.isRequired,
-    questions: PropTypes.instanceOf(Map),
-    items: PropTypes.instanceOf(List)
+    isFetching: PropTypes.bool.isRequired,
+    error: PropTypes.string,
+    sortParams: PropTypes.instanceOf(Map),
+    questions: PropTypes.instanceOf(List)
   };
 
   static defaultProps = {
-    questions: Map(),
-    items: List()
+    error: undefined,
+    sortParams: Map(),
+    questions: List()
   };
 
   componentDidMount() {
-    const { fetchQuestions, questions } = this.props;
-    fetchQuestions(
-      questions.get('page'),
-      questions.get('pageSize'),
-      questions.get('fromDate'),
-      questions.get('toDate'),
-      questions.get('order'),
-      questions.get('sort'),
-      questions.get('q'),
-      questions.get('accepted'),
-      questions.get('closed')
-    );
+    const { fetchQuestions, sortParams } = this.props;
+    fetchQuestions(sortParams);
   }
 
   render() {
-    const { questions, items } = this.props;
+    const { questions, error, isFetching } = this.props;
 
     return (
       <div>
         <QuestionsList
-          questions={items}
-          errorMessage={questions.get('error')}
-          isFetching={questions.get('isFetching')}
+          questions={questions}
+          errorMessage={error}
+          isFetching={isFetching}
         />
       </div>
     );
@@ -49,8 +47,10 @@ class Questions extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  questions: getQuestions(state),
-  items: getQuestionItems(state)
+  isFetching: getIsFetching(state),
+  error: getErrorMessage(state),
+  sortParams: getSortParams(state),
+  questions: getQuestions(state)
 });
 
 const mapDispatchToProps = dispatch => ({

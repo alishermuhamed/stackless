@@ -51,7 +51,7 @@ QuestionsList.propTypes = {
 };
 
 QuestionsList.defaultProps = {
-  errorMessage: '',
+  errorMessage: undefined,
   questions: List(),
   allTimeScore: undefined,
   allTimeAnswers: undefined

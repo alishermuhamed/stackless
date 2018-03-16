@@ -1,23 +1,16 @@
 import axios from 'axios';
 import * as types from '../constants';
 
-const getQuestions = ({
-  page = 1,
-  pageSize = 10,
-  fromDate = '',
-  toDate = '',
-  order = 'desc',
-  sort = 'activity',
-  q = '',
-  accepted = '',
-  closed = ''
-}) => {
+const getQuestions = params => {
   return axios
     .get(
-      `${types.BASE_URL}search/advanced?page=${page}` +
-        `&pagesize=${pageSize}&fromdate=${fromDate}&todate=${toDate}` +
-        `&order=${order}&sort=${sort}&q=${q}&accepted=${accepted}` +
-        `&closed=${closed}&site=stackoverflow` +
+      `${types.BASE_URL}search/advanced?page=${params.get('page')}` +
+        `&pagesize=${params.get('pageSize')}` +
+        `&fromdate=${params.get('fromDate')}` +
+        `&todate=${params.get('toDate')}&order=${params.get('order')}` +
+        `&sort=${params.get('sort')}&q=${params.get('q')}` +
+        `&accepted=${params.get('accepted')}` +
+        `&closed=${params.get('closed')}&site=stackoverflow` +
         `&filter=!.FjwPGLxmyYTh_1x.CPOGnXs*)C_y${types.KEY}`
     )
     .then(response => response.data);

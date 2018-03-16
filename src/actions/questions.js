@@ -1,44 +1,12 @@
-import { Map, fromJS } from 'immutable';
+import { fromJS } from 'immutable';
 import getQuestions from '../api/questions';
 import * as types from '../constants';
 
-const fetchQuestions = ({
-  page = 1,
-  pageSize = 10,
-  fromDate = '',
-  toDate = '',
-  order = 'desc',
-  sort = 'activity',
-  q = '',
-  accepted = '',
-  closed = ''
-}) => {
+const fetchQuestions = params => {
   return dispatch => {
-    dispatch(
-      requestQuestions({
-        page,
-        pageSize,
-        fromDate,
-        toDate,
-        order,
-        sort,
-        q,
-        accepted,
-        closed
-      })
-    );
+    dispatch(requestQuestions(params));
 
-    return getQuestions(
-      page,
-      pageSize,
-      fromDate,
-      toDate,
-      order,
-      sort,
-      q,
-      accepted,
-      closed
-    )
+    return getQuestions(params)
       .then(data => {
         dispatch(receiveQuestions(data));
       })
@@ -48,29 +16,9 @@ const fetchQuestions = ({
   };
 };
 
-const requestQuestions = ({
-  page = 1,
-  pageSize = 10,
-  fromDate = '',
-  toDate = '',
-  order = 'desc',
-  sort = 'activity',
-  q = '',
-  accepted = '',
-  closed = ''
-}) => ({
+const requestQuestions = params => ({
   type: types.REQUEST_QUESTIONS,
-  payload: Map({
-    page,
-    pageSize,
-    fromDate,
-    toDate,
-    order,
-    sort,
-    q,
-    accepted,
-    closed
-  })
+  payload: params
 });
 
 const receiveQuestions = json => ({

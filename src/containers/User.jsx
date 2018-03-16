@@ -30,7 +30,7 @@ class User extends React.Component {
     questions: List(),
     allTimeScore: undefined,
     allTimeAnswers: undefined,
-    error: ''
+    error: undefined
   };
 
   componentDidMount() {
