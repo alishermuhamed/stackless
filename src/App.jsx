@@ -1,21 +1,11 @@
 import React from 'react';
-import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Question, Questions, User } from './containers';
 import { Background } from './layout';
-import rootReducer from './reducers';
 
-const store = createStore(
-  rootReducer,
-  compose(
-    applyMiddleware(thunk),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-  )
-);
-
-const App = () => (
+const App = ({ store }) => (
   <Provider store={store}>
     <Router>
       <div>
@@ -28,5 +18,9 @@ const App = () => (
     </Router>
   </Provider>
 );
+
+App.propTypes = {
+  store: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
+};
 
 export default App;
