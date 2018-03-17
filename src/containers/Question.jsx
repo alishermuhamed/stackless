@@ -30,12 +30,12 @@ Question.propTypes = {
   question: PropTypes.object
 };
 
-const mapStateToProps = ({ question }, ownProps) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     id: ownProps.match.params.id,
-    isFetching: question.isFetching,
-    error: question.error,
-    question: question.item
+    isFetching: state.get('question').isFetching,
+    error: state.get('question').error,
+    question: state.get('question').item
   };
 };
 

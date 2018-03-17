@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
 
-export const getInfo = state => state.user.get('userInfo');
-export const getErrorMessage = state => state.user.get('error');
-export const getIsFetching = state => state.user.get('isFetching');
-export const getQuestions = state => state.user.get('questions');
+export const getInfo = state => state.get('user').get('userInfo');
+export const getErrorMessage = state => state.get('user').get('error');
+export const getIsFetching = state => state.get('user').get('isFetching');
+export const getQuestions = state => state.get('user').get('questions');
 
 export const allTimeScore = createSelector(
   getQuestions,
