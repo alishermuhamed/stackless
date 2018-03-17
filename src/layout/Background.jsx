@@ -1,6 +1,5 @@
 import React from 'react';
-import { SearchBar } from '../components';
-import { SideBar } from '../containers';
+import { SideBar, SearchBar } from '../containers';
 
 class Background extends React.Component {
   shouldComponentUpdate() {

@@ -31,6 +31,11 @@ class Questions extends React.Component {
     fetchQuestions(sortParams);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { fetchQuestions, sortParams } = this.props;
+    nextProps.sortParams !== sortParams && fetchQuestions(nextProps.sortParams);
+  }
+
   render() {
     const { questions, error, isFetching } = this.props;
 
@@ -53,8 +58,4 @@ const mapStateToProps = state => ({
   questions: getQuestions(state)
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchQuestions: (...params) => dispatch(fetchQuestions(...params))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Questions);
+export default connect(mapStateToProps, { fetchQuestions })(Questions);

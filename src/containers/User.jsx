@@ -72,8 +72,4 @@ const mapStateToProps = (state, ownProps) => ({
   allTimeAnswers: allTimeAnswers(state)
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchUser: (...params) => dispatch(fetchUser(...params))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(User);
+export default connect(mapStateToProps, { fetchUser })(User);

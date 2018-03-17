@@ -5,7 +5,7 @@ import './style.css';
 const TextBox = ({ name, value, onChange, placeholder }) => {
   return (
     <input
-    className="input"
+      className="input"
       type="text"
       name={name}
       value={value}

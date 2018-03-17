@@ -1,11 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { TextBox } from '..';
+import PropTypes from 'prop-types';
+import { TextBox } from '../index';
 import './style.css';
 
-class SearchBar extends React.PureComponent {
+class SearchBar extends React.Component {
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired
+  };
+
   state = {
-    search: ''
+    search: undefined
   };
 
   handleChange = ({ target }) => {
@@ -14,11 +19,25 @@ class SearchBar extends React.PureComponent {
     });
   };
 
+  handleSearch = () => {
+    const { onSubmit } = this.props;
+    const { search } = this.state;
+    onSubmit(search);
+    this.setState({ search: undefined });
+  };
+
+  handleHome = () => {
+    const { onSubmit } = this.props;
+    onSubmit('');
+    this.setState({ search: undefined });
+  };
+
   render() {
     const { search } = this.state;
+
     return (
       <div>
-        <NavLink className="button" to="/" href="/">
+        <NavLink onClick={this.handleHome} className="button" to="/" href="/">
           Вопросы
         </NavLink>
         <TextBox
@@ -27,11 +46,7 @@ class SearchBar extends React.PureComponent {
           onChange={this.handleChange}
           placeholder="Search..."
         />
-        <NavLink
-          className="button"
-          to={`/search/q=${search}`}
-          href={`/search/q=${search}`}
-        >
+        <NavLink onClick={this.handleSearch} className="button" to="/" href="/">
           Search
         </NavLink>
       </div>

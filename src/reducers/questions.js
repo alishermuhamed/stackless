@@ -28,6 +28,8 @@ const questions = (state = initialState, { type, payload }) => {
       });
     case types.RECEIVE_QUESTIONS:
       return state.set('isFetching', false).set('items', payload);
+    case types.UPDATE_SEARCH_VALUE:
+      return state.setIn(['sortParams', 'q'], payload);
     default:
       return state;
   }
