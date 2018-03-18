@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Map, List } from 'immutable';
+import { Map } from 'immutable';
 import PropTypes from 'prop-types';
 import fetchQuestions from '../actions/questions';
 import { QuestionsList } from '../components';
 import {
   getErrorMessage,
   getIsFetching,
-  getQuestions,
-  getSortParams
+  getSortParams,
+  getQuestionsList,
+  getUsers
 } from '../selectors/questions';
 
 class Questions extends React.Component {
@@ -16,14 +17,14 @@ class Questions extends React.Component {
     fetchQuestions: PropTypes.func.isRequired,
     isFetching: PropTypes.bool.isRequired,
     error: PropTypes.string,
-    sortParams: PropTypes.instanceOf(Map),
-    questions: PropTypes.instanceOf(List)
+    sortParams: PropTypes.instanceOf(Map).isRequired,
+    questions: PropTypes.instanceOf(Map).isRequired,
+    users: PropTypes.instanceOf(Map)
   };
 
   static defaultProps = {
     error: undefined,
-    sortParams: Map(),
-    questions: List()
+    users: Map()
   };
 
   componentDidMount() {
@@ -37,12 +38,13 @@ class Questions extends React.Component {
   }
 
   render() {
-    const { questions, error, isFetching } = this.props;
+    const { questions, users, error, isFetching } = this.props;
 
     return (
       <div>
         <QuestionsList
           questions={questions}
+          users={users}
           errorMessage={error}
           isFetching={isFetching}
         />
@@ -55,7 +57,8 @@ const mapStateToProps = state => ({
   isFetching: getIsFetching(state),
   error: getErrorMessage(state),
   sortParams: getSortParams(state),
-  questions: getQuestions(state)
+  questions: getQuestionsList(state),
+  users: getUsers(state)
 });
 
 export default connect(mapStateToProps, { fetchQuestions })(Questions);

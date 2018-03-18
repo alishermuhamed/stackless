@@ -9,10 +9,12 @@ export const allTimeScore = createSelector(
   getQuestions,
   questions =>
     questions
-      ? questions.reduce(
-          (sum, currentQuestion) => sum + +currentQuestion.get('score'),
-          0
-        )
+      ? questions
+          .valueSeq()
+          .reduce(
+            (sum, currentQuestion) => sum + +currentQuestion.get('score'),
+            0
+          )
       : undefined
 );
 
@@ -20,9 +22,12 @@ export const allTimeAnswers = createSelector(
   getQuestions,
   questions =>
     questions
-      ? questions.reduce(
-          (sum, currentQuestion) => sum + +currentQuestion.get('answer_count'),
-          0
-        )
+      ? questions
+          .valueSeq()
+          .reduce(
+            (sum, currentQuestion) =>
+              sum + +currentQuestion.get('answer_count'),
+            0
+          )
       : undefined
 );

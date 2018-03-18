@@ -15,24 +15,27 @@ const fetchUser = id => {
       getUserAnswersCount(id),
       getUserQuestions(id)
     ])
-      .then(resultArray => {
-        const questionsCount = resultArray[0].total;
-        const answersCount = resultArray[1].total;
-        const questionArray = resultArray[2].items;
+      .then(result => {
+        const questionsCount = result[0].total;
+        const answersCount = result[1].total;
+        const questionArray = result[2].items;
         if (questionArray.length === 0)
           return Promise.reject({
             message: 'User does not have any questions'
           });
 
         const userInfo = {
-          ...questionArray[0].owner,
+          ...questionArray[0]['owner'],
           questionsCount: questionsCount,
           answersCount: answersCount
         };
-        const questions = questionArray.map(obj => {
-          delete obj.owner;
-          return obj;
-        });
+
+        const questions = questionArray.reduce((acc, cur) => {
+          delete cur['owner'];
+          acc[cur['question_id']] = cur;
+          return acc;
+        }, {});
+
         return fromJS({
           userInfo,
           questions

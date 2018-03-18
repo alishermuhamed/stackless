@@ -7,8 +7,16 @@ const fetchQuestions = params => {
     dispatch(requestQuestions(params));
 
     return getQuestions(params)
-      .then(data => {
-        dispatch(receiveQuestions(data));
+      .then(result => {
+        const users = {};
+        const questionsList = {};
+
+        for (let obj of result.items) {
+          users[obj['owner']['user_id']] = obj['owner'];
+          obj['owner'] = obj['owner']['user_id'];
+          questionsList[obj['question_id']] = obj;
+        }
+        return dispatch(receiveQuestions(fromJS({ users, questionsList })));
       })
       .catch(err => {
         dispatch(requestQuestionsFailed(err));
@@ -23,11 +31,11 @@ const requestQuestions = params => ({
 
 const receiveQuestions = json => ({
   type: types.RECEIVE_QUESTIONS,
-  payload: fromJS(json.items)
+  payload: fromJS(json)
 });
 
 const requestQuestionsFailed = err => ({
-  type: types.REQUEST_QUESTIONS_ERROR,
+  type: types.RECEIVE_QUESTIONS_ERROR,
   payload: err
 });
 

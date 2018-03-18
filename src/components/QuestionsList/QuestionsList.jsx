@@ -1,10 +1,11 @@
 import React from 'react';
-import { List } from 'immutable';
+import { Map } from 'immutable';
 import PropTypes from 'prop-types';
 import { QuestionItem, QuestionAuthor } from '../index';
 
 const QuestionsList = ({
   questions,
+  users,
   allTimeScore,
   allTimeAnswers,
   isFetching,
@@ -23,26 +24,30 @@ const QuestionsList = ({
         {!isNaN(allTimeAnswers) && (
           <h1>Received answers total: {allTimeAnswers}</h1>
         )}
-        {questions.map(question => (
-          <QuestionItem
-            key={question.get('question_id')}
-            question={question}
-            render={(userId, displayName, profileImage) => (
-              <QuestionAuthor
-                userId={userId}
-                displayName={displayName}
-                profileImage={profileImage}
-              />
-            )}
-          />
-        ))}
+        {questions
+          .entrySeq()
+          .map(([key, value]) => (
+            <QuestionItem
+              key={key}
+              question={value}
+              user={users.get(String(value.get('owner')))}
+              render={user => (
+                <QuestionAuthor
+                  userId={user.get('user_id')}
+                  displayName={user.get('display_name')}
+                  profileImage={user.get('profile_image')}
+                />
+              )}
+            />
+          ))}
       </div>
     );
 };
 
 QuestionsList.propTypes = {
   isFetching: PropTypes.bool.isRequired,
-  questions: PropTypes.instanceOf(List),
+  questions: PropTypes.instanceOf(Map).isRequired,
+  users: PropTypes.instanceOf(Map),
   allTimeScore: PropTypes.number,
   allTimeAnswers: PropTypes.number,
   errorMessage: PropTypes.string
@@ -50,9 +55,9 @@ QuestionsList.propTypes = {
 
 QuestionsList.defaultProps = {
   errorMessage: undefined,
-  questions: List(),
   allTimeScore: undefined,
-  allTimeAnswers: undefined
+  allTimeAnswers: undefined,
+  users: Map()
 };
 
 export default QuestionsList;

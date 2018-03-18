@@ -18,7 +18,7 @@ class User extends React.Component {
     id: PropTypes.string.isRequired,
     fetchUser: PropTypes.func.isRequired,
     userInfo: PropTypes.instanceOf(Map),
-    questions: PropTypes.instanceOf(List),
+    questions: PropTypes.instanceOf(Map),
     allTimeScore: PropTypes.number,
     allTimeAnswers: PropTypes.number,
     isFetching: PropTypes.bool.isRequired,
@@ -27,7 +27,7 @@ class User extends React.Component {
 
   static defaultProps = {
     userInfo: undefined,
-    questions: List(),
+    questions: Map(),
     allTimeScore: undefined,
     allTimeAnswers: undefined,
     error: undefined
