@@ -1,0 +1,15 @@
+.sideBarBox {
+  text-decoration: none;
+  background: lightgray;
+  width: 10%;
+  float: left;
+  padding: 10px;
+  max-width: 128px;
+  border-radius: 4px;
+}
+
+.listContent {
+  width: 85%;
+  float: left;
+  margin-left: 20px;
+}

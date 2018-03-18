@@ -6,6 +6,7 @@ import fetchTags from '../actions/tags';
 import { Link } from 'react-router-dom';
 //import { QuestionsList } from '../components';
 import { getErrorMessage, getIsFetching, getTags } from '../selectors/tags';
+import './style.css';
 
 class Sidebar extends React.Component {
   static propTypes = {
@@ -44,7 +45,7 @@ class Sidebar extends React.Component {
   };
 
   render() {
-    return <div>{this.renderTagsList()}</div>;
+    return <div className = "sideBarBox">{this.renderTagsList()}</div>;
   }
 }
 

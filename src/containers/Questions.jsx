@@ -10,6 +10,7 @@ import {
   getQuestions,
   getSortParams
 } from '../selectors/questions';
+import './style.css';
 
 class Questions extends React.Component {
   static propTypes = {
@@ -40,7 +41,7 @@ class Questions extends React.Component {
     const { questions, error, isFetching } = this.props;
 
     return (
-      <div>
+      <div className = "listContent">
         <QuestionsList
           questions={questions}
           errorMessage={error}

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import fetchQuestion from '../actions/question';
 import QuestionComponent from '../components/Question';
+import './style.css';
 
 class Question extends React.Component {
   componentDidMount() {
@@ -13,11 +14,13 @@ class Question extends React.Component {
   render() {
     const { isFetching, error, question } = this.props;
     return (
-      <QuestionComponent
-        isFetching={isFetching}
-        error={error}
-        question={question}
-      />
+      <div className = "listContent">
+        <QuestionComponent
+          isFetching={isFetching}
+          error={error}
+          question={question}
+        />
+      </div>
     );
   }
 }

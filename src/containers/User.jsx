@@ -12,6 +12,7 @@ import {
   getIsFetching,
   getQuestions
 } from '../selectors/user';
+import './style.css';
 
 class User extends React.Component {
   static propTypes = {
@@ -48,16 +49,18 @@ class User extends React.Component {
       allTimeAnswers
     } = this.props;
     return (
-      <React.Fragment>
-        <UserComponent info={userInfo} />
-        <QuestionsList
-          questions={questions}
-          allTimeScore={allTimeScore}
-          allTimeAnswers={allTimeAnswers}
-          errorMessage={error}
-          isFetching={isFetching}
-        />
-      </React.Fragment>
+      <div className = "listContent">
+        <React.Fragment>
+          <UserComponent info={userInfo} />
+          <QuestionsList
+            questions={questions}
+            allTimeScore={allTimeScore}
+            allTimeAnswers={allTimeAnswers}
+            errorMessage={error}
+            isFetching={isFetching}
+          />
+        </React.Fragment>
+      </div>
     );
   }
 }
