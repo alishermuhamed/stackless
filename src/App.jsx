@@ -14,7 +14,7 @@ const App = ({ store }) => (
         <Route exact path="/" component={Questions} />
         <Route path="/questions/:id" component={Question} />
         <Route path="/users/:id" component={User} />
-        Route path="/tags/:tag" component={Tag} />
+        <Route path="/tags/:tag" component={Tag} />
       </div>
     </Router>
   </Provider>
