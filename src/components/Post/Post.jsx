@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Comment from '../Comment';
+import { Comment } from '../index';
+import parseUnixTimeStamp from '../../utils';
 import './Post.css';
 
 const Post = props => {
@@ -18,7 +19,7 @@ const Post = props => {
             ' ' +
             props.owner.userId +
             ' ' +
-            props.creationDate}
+          parseUnixTimeStamp(props.creationDate)}
         </span>
       </div>
       <div>

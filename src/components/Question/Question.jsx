@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Post from './Post';
+import { Post } from '../index';
 
 const isEmpty = function(obj) {
   for (var key in obj) {

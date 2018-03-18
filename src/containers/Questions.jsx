@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Map } from 'immutable';
 import PropTypes from 'prop-types';
 import fetchQuestions from '../actions/questions';
+import { Filter } from './';
 import { QuestionsList } from '../components';
 import {
   getErrorMessage,
@@ -16,7 +17,7 @@ class Questions extends React.Component {
   static propTypes = {
     fetchQuestions: PropTypes.func.isRequired,
     isFetching: PropTypes.bool.isRequired,
-    error: PropTypes.string,
+    error: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     sortParams: PropTypes.instanceOf(Map).isRequired,
     questions: PropTypes.instanceOf(Map).isRequired,
     users: PropTypes.instanceOf(Map)
@@ -42,6 +43,7 @@ class Questions extends React.Component {
 
     return (
       <div>
+        <Filter />
         <QuestionsList
           questions={questions}
           users={users}

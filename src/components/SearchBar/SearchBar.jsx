@@ -1,4 +1,5 @@
 import React from 'react';
+import { Map } from 'immutable';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { TextBox } from '../index';
@@ -22,13 +23,21 @@ class SearchBar extends React.Component {
   handleSearch = () => {
     const { onSubmit } = this.props;
     const { search } = this.state;
-    onSubmit(search);
+    onSubmit(
+      Map({
+        q: search
+      })
+    );
     this.setState({ search: undefined });
   };
 
   handleHome = () => {
     const { onSubmit } = this.props;
-    onSubmit('');
+    onSubmit(
+      Map({
+        q: ''
+      })
+    );
     this.setState({ search: undefined });
   };
 
@@ -44,10 +53,10 @@ class SearchBar extends React.Component {
           name="search"
           value={search}
           onChange={this.handleChange}
-          placeholder="Search..."
+          placeholder="Поиск..."
         />
         <NavLink onClick={this.handleSearch} className="button" to="/" href="/">
-          Search
+          Поиск
         </NavLink>
       </div>
     );

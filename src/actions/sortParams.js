@@ -1,7 +1,7 @@
 import * as types from '../constants';
 
 const search = value => ({
-  type: types.UPDATE_SEARCH_VALUE,
+  type: types.UPDATE_SORT_PARAMS,
   payload: value
 });
 

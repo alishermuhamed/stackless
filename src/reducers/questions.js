@@ -27,8 +27,6 @@ const error = (state = '', { type, payload }) => {
 
 const sortParams = (
   state = Map({
-    fromDate: '',
-    toDate: '',
     order: 'desc',
     sort: 'activity',
     q: '',
@@ -38,8 +36,7 @@ const sortParams = (
   { type, payload }
 ) => {
   switch (type) {
-    case types.UPDATE_SEARCH_VALUE:
-      return state.set('q', payload);
+    case types.UPDATE_SORT_PARAMS:
     case types.REQUEST_QUESTIONS:
       return state.merge(payload);
     default:

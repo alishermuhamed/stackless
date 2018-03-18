@@ -50,7 +50,7 @@ QuestionsList.propTypes = {
   users: PropTypes.instanceOf(Map),
   allTimeScore: PropTypes.number,
   allTimeAnswers: PropTypes.number,
-  errorMessage: PropTypes.string
+  errorMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 };
 
 QuestionsList.defaultProps = {

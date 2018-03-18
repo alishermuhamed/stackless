@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import fetchQuestion from '../actions/question';
-import QuestionComponent from '../components/Question';
+import { Question as QuestionComponent } from '../components';
 
 class Question extends React.Component {
   componentDidMount() {
