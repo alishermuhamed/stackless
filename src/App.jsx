@@ -4,6 +4,7 @@ import { Route, BrowserRouter as Router } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Question, Questions, User } from './containers';
 import { Background } from './layout';
+import { Tag } from './components';
 
 const App = ({ store }) => (
   <Provider store={store}>
@@ -13,6 +14,7 @@ const App = ({ store }) => (
         <Route exact path="/" component={Questions} />
         <Route path="/questions/:id" component={Question} />
         <Route path="/users/:id" component={User} />
+        Route path="/tags/:tag" component={Tag} />
       </div>
     </Router>
   </Provider>
