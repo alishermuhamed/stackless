@@ -1,7 +1,7 @@
 import getTags from '../api/tags';
 import * as types from '../constants';
 
-const FAKE_DATA = {
+/* const FAKE_DATA = {
   "items": [
     {
       "is_required": false,
@@ -158,6 +158,7 @@ const FAKE_DATA = {
   "quota_max": 10000,
   "quota_remaining": 7661
 }
+*/
 
 function requestTags() {
   return {
@@ -184,10 +185,10 @@ function receiveTagsError(error) {
 export default function fetchTags() {
   return dispatch => {
     dispatch(requestTags());
-    /* return getTags().then(
+    return getTags().then(
       response => dispatch(receiveTags(response)),
       err => dispatch(receiveTagsError(err.response.data))
-    ); */
-    dispatch(receiveTags(FAKE_DATA));
+    );
+    //dispatch(receiveTags(FAKE_DATA));
   };
 }

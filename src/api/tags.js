@@ -8,9 +8,7 @@ import * as types from '../constants';
 const getTags = () =>
   axios
     .get(
-      `${types.BASE_URL}
-      tags?order=desc&sort=popular&inname=javascript&site=stackoverflow&filter=!9ewK8EadT
-      ${types.KEY}`
+      `${types.BASE_URL}tags?order=desc&sort=popular&site=stackoverflow&filter=!9ewK8EadT${types.KEY}`
     )
     .then(response => response.data);
 
