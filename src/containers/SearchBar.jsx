@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { SearchBar as SearchBarComponent } from '../components';
-import search from '../actions/sortParams';
+import search from '../actions/filterParams';
 
 const SearchBar = ({ search }) => {
   return (

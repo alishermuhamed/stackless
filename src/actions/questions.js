@@ -4,7 +4,7 @@ import * as types from '../constants';
 
 const fetchQuestions = params => {
   return dispatch => {
-    dispatch(requestQuestions(params));
+    dispatch(requestQuestions());
 
     return getQuestions(params)
       .then(result => {
@@ -24,9 +24,8 @@ const fetchQuestions = params => {
   };
 };
 
-const requestQuestions = params => ({
-  type: types.REQUEST_QUESTIONS,
-  payload: params
+const requestQuestions = () => ({
+  type: types.REQUEST_QUESTIONS
 });
 
 const receiveQuestions = json => ({

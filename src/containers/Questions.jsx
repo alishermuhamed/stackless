@@ -8,7 +8,7 @@ import { QuestionsList } from '../components';
 import {
   getErrorMessage,
   getIsFetching,
-  getSortParams,
+  getFilterParams,
   getQuestionsList,
   getUsers
 } from '../selectors/questions';
@@ -18,7 +18,7 @@ class Questions extends React.Component {
     fetchQuestions: PropTypes.func.isRequired,
     isFetching: PropTypes.bool.isRequired,
     error: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    sortParams: PropTypes.instanceOf(Map).isRequired,
+    filterParams: PropTypes.instanceOf(Map).isRequired,
     questions: PropTypes.instanceOf(Map).isRequired,
     users: PropTypes.instanceOf(Map)
   };
@@ -29,13 +29,14 @@ class Questions extends React.Component {
   };
 
   componentDidMount() {
-    const { fetchQuestions, sortParams } = this.props;
-    fetchQuestions(sortParams);
+    const { fetchQuestions, filterParams } = this.props;
+    fetchQuestions(filterParams);
   }
 
   componentWillReceiveProps(nextProps) {
-    const { fetchQuestions, sortParams } = this.props;
-    nextProps.sortParams !== sortParams && fetchQuestions(nextProps.sortParams);
+    const { fetchQuestions, filterParams } = this.props;
+    nextProps.filterParams !== filterParams &&
+      fetchQuestions(nextProps.filterParams);
   }
 
   render() {
@@ -58,7 +59,7 @@ class Questions extends React.Component {
 const mapStateToProps = state => ({
   isFetching: getIsFetching(state),
   error: getErrorMessage(state),
-  sortParams: getSortParams(state),
+  filterParams: getFilterParams(state),
   questions: getQuestionsList(state),
   users: getUsers(state)
 });

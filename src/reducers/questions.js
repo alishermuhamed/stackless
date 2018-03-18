@@ -25,10 +25,10 @@ const error = (state = '', { type, payload }) => {
   }
 };
 
-const sortParams = (
+const filterParams = (
   state = Map({
-    order: 'desc',
-    sort: 'activity',
+    answers: '',
+    tagged: '',
     q: '',
     accepted: '',
     closed: ''
@@ -36,7 +36,7 @@ const sortParams = (
   { type, payload }
 ) => {
   switch (type) {
-    case types.UPDATE_SORT_PARAMS:
+    case types.UPDATE_FILTER_PARAMS:
     case types.REQUEST_QUESTIONS:
       return state.merge(payload);
     default:
@@ -69,7 +69,7 @@ const questionsList = (state = Map(), { type, payload }) => {
 export default combineReducers({
   isFetching,
   error,
-  sortParams,
+  filterParams,
   users,
   questionsList
 });

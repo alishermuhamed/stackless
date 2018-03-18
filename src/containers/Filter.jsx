@@ -2,13 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Filter as FilterComponent } from '../components';
-import search from '../actions/sortParams';
-import {
-  getAccepted,
-  getClosed,
-  getOrder,
-  getSort
-} from '../selectors/questions';
+import search from '../actions/filterParams';
+import { getAccepted, getClosed, getAnswers } from '../selectors/questions';
 
 const Filter = props => {
   return (
@@ -20,15 +15,13 @@ const Filter = props => {
 
 Filter.propTypes = {
   search: PropTypes.func.isRequired,
-  order: PropTypes.string.isRequired,
-  sort: PropTypes.string.isRequired,
+  answers: PropTypes.string.isRequired,
   accepted: PropTypes.string.isRequired,
   closed: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
-  order: getOrder(state),
-  sort: getSort(state),
+  answers: getAnswers(state),
   accepted: getAccepted(state),
   closed: getClosed(state)
 });

@@ -5,8 +5,8 @@ const getQuestions = params => {
   return axios
     .get(
       `${types.BASE_URL}search/advanced?page=1&pagesize=30` +
-        `&order=${params.get('order')}` +
-        `&sort=${params.get('sort')}&q=${params.get('q')}` +
+        `&answers=${params.get('answers')}` +
+        `&q=${params.get('q')}` +
         `&accepted=${params.get('accepted')}` +
         `&closed=${params.get('closed')}&site=stackoverflow` +
         `&filter=!7gohVV6XgKayq9xDpDWIwS1BxPpYBHPGK*${types.KEY}`

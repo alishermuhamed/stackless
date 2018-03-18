@@ -6,36 +6,32 @@ import './style.css';
 class Filter extends React.Component {
   static propTypes = {
     search: PropTypes.func.isRequired,
-    order: PropTypes.string.isRequired,
-    sort: PropTypes.string.isRequired,
+    answers: PropTypes.string.isRequired,
     accepted: PropTypes.string.isRequired,
     closed: PropTypes.string.isRequired
   };
 
   constructor(props) {
     super(props);
-    const { order, sort, accepted, closed } = this.props;
+    const { answers, accepted, closed } = this.props;
     this.state = {
-      order,
-      sort,
+      answers,
       accepted,
       closed
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    const { order, sort, accepted, closed } = this.props;
+    const { answers, accepted, closed } = this.props;
     if (
-      nextProps.order !== order &&
-      nextProps.sort !== sort &&
+      nextProps.answers !== answers &&
       nextProps.accepted !== accepted &&
       nextProps.closed !== closed
     ) {
       this.setState({
-        order: nextProps.order,
-        sort: nextProps.order,
-        accepted: nextProps.order,
-        closed: nextProps.order
+        answers: nextProps.answers,
+        accepted: nextProps.accepted,
+        closed: nextProps.closed
       });
     }
   }
@@ -48,11 +44,10 @@ class Filter extends React.Component {
 
   handleSubmit = () => {
     const { search } = this.props;
-    const { order, sort, accepted, closed } = this.state;
+    const { answers, accepted, closed } = this.state;
     search(
       Map({
-        order,
-        sort,
+        answers,
         accepted,
         closed
       })
@@ -66,31 +61,16 @@ class Filter extends React.Component {
           <div className="form-inline">
             <div className="form-group">
               <div className="form-group">
-                Дата:
-                <select
-                  name="order"
-                  value={this.state.order}
+                Минимальное кол-во ответов:
+                <input
+                  name="answers"
+                  value={this.state.answers}
                   onChange={this.handleChange}
+                  type="number"
                   className="form-control"
-                >
-                  <option value="desc">По убыванию</option>
-                  <option value="asc">По возрастанию</option>
-                </select>
+                />
               </div>
-              <div className="form-group">
-                Сортировать по:
-                <select
-                  name="sort"
-                  value={this.state.sort}
-                  onChange={this.handleChange}
-                  className="form-control"
-                >
-                  <option value="activity">Активности</option>
-                  <option value="votes">Голосам</option>
-                  <option value="creation">Дата создания</option>
-                  <option value="relevance">Актуальность</option>
-                </select>
-              </div>
+
               <div className="form-group">
                 Есть принятый ответ:
                 <select
@@ -105,7 +85,7 @@ class Filter extends React.Component {
                 </select>
               </div>
               <div className="form-group">
-                Вопрос закрыт
+                Вопрос закрыт:
                 <select
                   name="closed"
                   value={this.state.closed}
