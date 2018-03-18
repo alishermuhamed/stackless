@@ -45,19 +45,23 @@ class SearchBar extends React.Component {
     const { search } = this.state;
 
     return (
-      <div>
-        <NavLink onClick={this.handleHome} className="button" to="/" href="/">
-          Вопросы
-        </NavLink>
+      <div className="container-fluid">
+        <button className="btn btn__hov">
+          <NavLink onClick={this.handleHome} className="btn__a" to="/" href="/">
+            Вопросы
+          </NavLink>
+        </button>
         <TextBox
           name="search"
           value={search}
           onChange={this.handleChange}
           placeholder="Поиск..."
         />
-        <NavLink onClick={this.handleSearch} className="button" to="/" href="/">
-          Поиск
-        </NavLink>
+        <button className="btn btn__hov">
+          <NavLink onClick={this.handleSearch} className="btn__a" to="/" href="/">
+            Поиск
+          </NavLink>
+        </button>
       </div>
     );
   }

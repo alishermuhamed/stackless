@@ -63,6 +63,8 @@ class Filter extends React.Component {
               <div className="form-group">
                 Минимальное кол-во ответов:
                 <input
+                  min='0'
+                  max='1000'
                   name="answers"
                   value={this.state.answers}
                   onChange={this.handleChange}
@@ -70,7 +72,6 @@ class Filter extends React.Component {
                   className="form-control"
                 />
               </div>
-
               <div className="form-group">
                 Есть принятый ответ:
                 <select
