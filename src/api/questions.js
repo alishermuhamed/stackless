@@ -4,7 +4,7 @@ import * as types from '../constants';
 const getQuestions = params => {
   return axios
     .get(
-      `${types.BASE_URL}search/advanced?page=1&pagesize=30` +
+      `${types.BASE_URL}search/advanced?page=1&pagesize=70` +
         `&answers=${params.get('answers')}` +
         `&q=${params.get('q')}` +
         `&accepted=${params.get('accepted')}` +
