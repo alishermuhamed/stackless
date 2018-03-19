@@ -11,6 +11,8 @@ const App = ({ store }) => (
       <div>
         <Route path="/" component={Background} />
         <Route exact path="/" component={Questions} />
+        <Route path="/search/:search" component={Questions} />
+        <Route path="/tags/:tag" component={Questions} />
         <Route path="/questions/:id" component={Question} />
         <Route path="/users/:id" component={User} />
       </div>

@@ -46,22 +46,29 @@ class SearchBar extends React.Component {
 
     return (
       <div className="container-fluid">
-        <button className="btn btn__hov">
-          <NavLink onClick={this.handleHome} className="btn__a" to="/" href="/">
-            Вопросы
-          </NavLink>
-        </button>
+        <NavLink
+          onClick={this.handleHome}
+          className="btn btn-primary"
+          to="/"
+          href="/"
+        >
+          Вопросы
+        </NavLink>
         <TextBox
           name="search"
           value={search}
           onChange={this.handleChange}
           placeholder="Поиск..."
         />
-        <button className="btn btn__hov">
-          <NavLink onClick={this.handleSearch} className="btn__a" to="/" href="/">
-            Поиск
-          </NavLink>
-        </button>
+
+        <NavLink
+          onClick={this.handleSearch}
+          className="btn btn-primary"
+          to="/"
+          href="/"
+        >
+          Поиск
+        </NavLink>
       </div>
     );
   }
