@@ -16,6 +16,7 @@
 .tags {
   display:flex;
   justify-content:flex-end;
+  margin-right:100px;
 }
 .tag {
   margin-right: 5px;
@@ -26,6 +27,7 @@
 .author {
   display:flex;
   justify-content:flex-end;
+  margin-right:100px;
 }
 .author__avatar {
   width: 50px;

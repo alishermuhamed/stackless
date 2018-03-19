@@ -21,6 +21,7 @@ const Post = props => {
           >
             {props.owner.displayName}
           </Link>
+          <div></div>
           {parseUnixTimeStamp(props.creationDate)}
         </span>
       </div>
