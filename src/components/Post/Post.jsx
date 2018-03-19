@@ -15,11 +15,13 @@ const Post = props => {
       <div className="author">
         <img className="author__avatar"src={props.owner.profileImage} alt="Author profile" />
         <span className="author__info">
-          {props.owner.displayName +
-            ' ' +
-            props.owner.userId +
-            ' ' +
-          parseUnixTimeStamp(props.creationDate)}
+          <Link
+            to={`/users/${props.owner.userId}`}
+            href={`/users/${props.owner.userId}`}
+          >
+            {props.owner.displayName}
+          </Link>
+          {parseUnixTimeStamp(props.creationDate)}
         </span>
       </div>
       <div>
