@@ -3,6 +3,7 @@ import { Map } from 'immutable';
 import PropTypes from 'prop-types';
 import { QuestionItem, QuestionAuthor } from '../index';
 import './style.css';
+
 const QuestionsList = ({
   questions,
   users,
@@ -12,17 +13,21 @@ const QuestionsList = ({
   errorMessage
 }) => {
   if (errorMessage) {
-    return <h2>Ooops! Something went wrong: {errorMessage.toString()}</h2>;
+    return (
+      <h2 className="questionList">
+        Ooops! Что-то пошло не так: {errorMessage.toString()}
+      </h2>
+    );
   } else if (isFetching) {
     return <h2>Loading...</h2>;
   } else if (questions.count() === 0) {
-    return <h2>No data.</h2>;
+    return <h2 className="questionList">No data.</h2>;
   } else
     return (
-      <div>
+      <div className="questionList">
         {!isNaN(allTimeScore) && <h1>Received votes total: {allTimeScore}</h1>}
         {!isNaN(allTimeAnswers) && (
-          <h1 className="questionList">Received answers total: {allTimeAnswers}</h1>
+          <h1>Received answers total: {allTimeAnswers}</h1>
         )}
         {questions
           .entrySeq()

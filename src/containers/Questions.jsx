@@ -35,28 +35,8 @@ class Questions extends React.Component {
   };
 
   componentDidMount() {
-    const {
-      updateFilterParams,
-      filterParams,
-      fetchQuestions,
-      search,
-      tag
-    } = this.props;
-
-    const params = {};
-    search && (params.q = search);
-    tag && (params.tagged = tag);
-
-    if (Object.keys(params).length > 0) {
-      updateFilterParams(Map(params));
-    } else if (
-      filterParams.get('q') !== '' ||
-      filterParams.get('tagged') !== ''
-    ) {
-      updateFilterParams(Map({ q: '', tagged: '' }));
-    } else {
-      fetchQuestions();
-    }
+    const { updateFilterParams, search, tag } = this.props;
+    updateFilterParams(Map({ q: search, tagged: tag }));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -80,14 +60,12 @@ class Questions extends React.Component {
     return (
       <div>
         <Filter />
-      
         <QuestionsList
           questions={questions}
           users={users}
           errorMessage={error}
           isFetching={isFetching}
         />
-      
       </div>
     );
   }

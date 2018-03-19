@@ -28,8 +28,8 @@ const error = (state = '', { type, payload }) => {
 const filterParams = (
   state = Map({
     answers: '',
-    tagged: '',
-    q: '',
+    /*tagged: '',
+    q: '',*/
     accepted: '',
     closed: ''
   }),

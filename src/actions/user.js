@@ -21,7 +21,7 @@ const fetchUser = id => {
         const questionArray = result[2].items;
         if (questionArray.length === 0)
           return Promise.reject({
-            message: 'User does not have any questions'
+            message: 'У пользователя нет вопросов'
           });
 
         const userInfo = {
