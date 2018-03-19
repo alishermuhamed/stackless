@@ -6,7 +6,7 @@ import './style.css';
 
 const SearchBar = ({ tags }) => {
   return (
-    <div>
+    <div className="container__tags">
       {tags.map(tag => (
         <div key={tag}>
           <NavLink

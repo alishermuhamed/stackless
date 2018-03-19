@@ -2,7 +2,7 @@ import React from 'react';
 import { Map } from 'immutable';
 import PropTypes from 'prop-types';
 import { QuestionItem, QuestionAuthor } from '../index';
-
+import './style.css';
 const QuestionsList = ({
   questions,
   users,
@@ -22,7 +22,7 @@ const QuestionsList = ({
       <div>
         {!isNaN(allTimeScore) && <h1>Received votes total: {allTimeScore}</h1>}
         {!isNaN(allTimeAnswers) && (
-          <h1>Received answers total: {allTimeAnswers}</h1>
+          <h1 className="questionList">Received answers total: {allTimeAnswers}</h1>
         )}
         {questions
           .entrySeq()

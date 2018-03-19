@@ -1,0 +1,10 @@
+.container__tags {
+  position:absolute;
+  left:0;
+  top:140px;
+  width:130px;
+  padding:10px;
+  color:black;
+  border-radius:0 10px 10px 0;
+  background: rgb(237, 243, 244);
+}

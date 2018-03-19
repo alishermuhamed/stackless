@@ -80,12 +80,14 @@ class Questions extends React.Component {
     return (
       <div>
         <Filter />
+      
         <QuestionsList
           questions={questions}
           users={users}
           errorMessage={error}
           isFetching={isFetching}
         />
+      
       </div>
     );
   }

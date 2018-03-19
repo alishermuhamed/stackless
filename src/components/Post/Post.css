@@ -4,7 +4,7 @@
 }
 .body {
   margin:10px 0;
-  margin-left:10px;
+  margin-left:140px;
   border-radius:5px;
   border: 1px solid;
   width: 1000px;
@@ -18,7 +18,7 @@
 .tags {
   display:flex;
   justify-content:flex-start;
-  margin-left:50px;
+  margin-left:150px;
   margin-top:10px;
 }
 .tag {
