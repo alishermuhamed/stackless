@@ -13,3 +13,7 @@ export const RECEIVE_QUESTION_ERROR = 'question/RECEIVE_QUESTION_ERROR';
 export const REQUEST_USER = 'question/REQUEST_USER';
 export const RECEIVE_USER = 'question/RECEIVE_USER';
 export const RECEIVE_USER_ERROR = 'question/RECEIVE_USER_ERROR';
+
+export const REQUEST_TAGS = 'tags/REQUEST_TAGS';
+export const RECEIVE_TAGS = 'tags/RECEIVE_TAGS';
+export const RECEIVE_TAGS_ERROR = 'tags/RECEIVE_TAGS_ERROR';
