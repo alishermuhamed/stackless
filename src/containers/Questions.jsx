@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Map } from 'immutable';
 import PropTypes from 'prop-types';
-import fetchQuestions from '../actions/questions';
+import { fetchQuestions, updateFilterParams } from '../actions/questions';
 import { Filter } from './';
 import { QuestionsList } from '../components';
 import {
@@ -15,7 +16,10 @@ import {
 
 class Questions extends React.Component {
   static propTypes = {
+    search: PropTypes.string,
+    tag: PropTypes.string,
     fetchQuestions: PropTypes.func.isRequired,
+    updateFilterParams: PropTypes.func.isRequired,
     isFetching: PropTypes.bool.isRequired,
     error: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     filterParams: PropTypes.instanceOf(Map).isRequired,
@@ -24,19 +28,50 @@ class Questions extends React.Component {
   };
 
   static defaultProps = {
+    search: '',
+    tag: '',
     error: undefined,
     users: Map()
   };
 
   componentDidMount() {
-    const { fetchQuestions, filterParams } = this.props;
-    fetchQuestions(filterParams);
+    const {
+      updateFilterParams,
+      filterParams,
+      fetchQuestions,
+      search,
+      tag
+    } = this.props;
+
+    const params = {};
+    search && (params.q = search);
+    tag && (params.tagged = tag);
+
+    if (Object.keys(params).length > 0) {
+      updateFilterParams(Map(params));
+    } else if (
+      filterParams.get('q') !== '' ||
+      filterParams.get('tagged') !== ''
+    ) {
+      updateFilterParams(Map({ q: '', tagged: '' }));
+    } else {
+      fetchQuestions();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
-    const { fetchQuestions, filterParams } = this.props;
-    nextProps.filterParams !== filterParams &&
-      fetchQuestions(nextProps.filterParams);
+    const {
+      fetchQuestions,
+      updateFilterParams,
+      filterParams,
+      search,
+      tag
+    } = this.props;
+    if (nextProps.filterParams !== filterParams) {
+      fetchQuestions();
+    } else if (nextProps.search !== search || nextProps.tag !== tag) {
+      updateFilterParams(Map({ q: nextProps.search, tagged: nextProps.tag }));
+    }
   }
 
   render() {
@@ -56,7 +91,9 @@ class Questions extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
+  search: ownProps.match.params.search,
+  tag: ownProps.match.params.tag,
   isFetching: getIsFetching(state),
   error: getErrorMessage(state),
   filterParams: getFilterParams(state),
@@ -64,4 +101,9 @@ const mapStateToProps = state => ({
   users: getUsers(state)
 });
 
-export default connect(mapStateToProps, { fetchQuestions })(Questions);
+export default withRouter(
+  connect(mapStateToProps, {
+    fetchQuestions,
+    updateFilterParams
+  })(Questions)
+);

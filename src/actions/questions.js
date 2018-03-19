@@ -2,11 +2,16 @@ import { fromJS } from 'immutable';
 import getQuestions from '../api/questions';
 import * as types from '../constants';
 
-const fetchQuestions = params => {
-  return dispatch => {
-    dispatch(requestQuestions());
+export const fetchQuestions = () => {
+  return (dispatch, getState) => {
+    dispatch({ type: types.REQUEST_QUESTIONS });
+    dispatch(receiveQuestions(getState().getIn(['questions', 'filterParams'])));
+  };
+};
 
-    return getQuestions(params)
+const receiveQuestions = params => {
+  return dispatch => {
+    getQuestions(params)
       .then(result => {
         const users = {};
         const questionsList = {};
@@ -16,26 +21,21 @@ const fetchQuestions = params => {
           obj['owner'] = obj['owner']['user_id'];
           questionsList[obj['question_id']] = obj;
         }
-        return dispatch(receiveQuestions(fromJS({ users, questionsList })));
+        return dispatch({
+          type: types.RECEIVE_QUESTIONS,
+          payload: fromJS({ users, questionsList })
+        });
       })
       .catch(err => {
-        dispatch(requestQuestionsFailed(err));
+        dispatch({
+          type: types.RECEIVE_QUESTIONS_ERROR,
+          payload: err
+        });
       });
   };
 };
 
-const requestQuestions = () => ({
-  type: types.REQUEST_QUESTIONS
+export const updateFilterParams = value => ({
+  type: types.UPDATE_FILTER_PARAMS,
+  payload: value
 });
-
-const receiveQuestions = json => ({
-  type: types.RECEIVE_QUESTIONS,
-  payload: fromJS(json)
-});
-
-const requestQuestionsFailed = err => ({
-  type: types.RECEIVE_QUESTIONS_ERROR,
-  payload: err
-});
-
-export default fetchQuestions;

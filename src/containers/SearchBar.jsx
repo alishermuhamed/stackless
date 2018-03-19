@@ -2,17 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { SearchBar as SearchBarComponent } from '../components';
-import search from '../actions/filterParams';
+import { getSearch } from '../selectors/questions';
 
-const SearchBar = ({ search }) => {
+const SearchBar = ({ searchValue }) => {
   return (
     <React.Fragment>
-      <SearchBarComponent onSubmit={search} />
+      <SearchBarComponent searchValue={searchValue} />
     </React.Fragment>
   );
 };
 
 SearchBar.propTypes = {
-  search: PropTypes.func.isRequired
+  searchValue: PropTypes.string.isRequired
 };
-export default connect(null, { search })(SearchBar);
+
+const mapStateToProps = state => ({
+  searchValue: getSearch(state)
+});
+
+export default connect(mapStateToProps)(SearchBar);

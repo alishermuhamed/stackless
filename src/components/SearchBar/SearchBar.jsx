@@ -7,12 +7,24 @@ import './style.css';
 
 class SearchBar extends React.Component {
   static propTypes = {
-    onSubmit: PropTypes.func.isRequired
+    searchValue: PropTypes.string.isRequired
   };
 
-  state = {
-    search: undefined
-  };
+  constructor(props) {
+    super(props);
+    const { searchValue } = this.props;
+    this.state = {
+      searchValue
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { searchValue } = this.props;
+    nextProps.searchValue !== searchValue &&
+      this.setState({
+        searchValue: nextProps.searchValue
+      });
+  }
 
   handleChange = ({ target }) => {
     this.setState({
@@ -20,52 +32,29 @@ class SearchBar extends React.Component {
     });
   };
 
-  handleSearch = () => {
-    const { onSubmit } = this.props;
-    const { search } = this.state;
-    onSubmit(
-      Map({
-        q: search
-      })
-    );
-    this.setState({ search: undefined });
-  };
-
-  handleHome = () => {
-    const { onSubmit } = this.props;
-    onSubmit(
-      Map({
-        q: ''
-      })
-    );
-    this.setState({ search: undefined });
-  };
-
   render() {
-    const { search } = this.state;
+    const { searchValue } = this.state;
 
     return (
       <div className="container-fluid">
-        <NavLink
-          onClick={this.handleHome}
-          className="btn btn-primary"
-          to="/"
-          href="/"
-        >
+        <NavLink className="btn btn-primary" to="/" href="/">
           Вопросы
         </NavLink>
         <TextBox
-          name="search"
-          value={search}
+          name="searchValue"
+          value={searchValue}
           onChange={this.handleChange}
           placeholder="Поиск..."
         />
 
         <NavLink
-          onClick={this.handleSearch}
           className="btn btn-primary"
-          to="/"
-          href="/"
+          to={
+            searchValue ? `/search/${searchValue.split(' ').join('%20')}` : '/'
+          }
+          href={
+            searchValue ? `/search/${searchValue.split(' ').join('%20')}` : '/'
+          }
         >
           Поиск
         </NavLink>

@@ -5,7 +5,7 @@ import './style.css';
 
 class Filter extends React.Component {
   static propTypes = {
-    search: PropTypes.func.isRequired,
+    updateFilterParams: PropTypes.func.isRequired,
     answers: PropTypes.string.isRequired,
     accepted: PropTypes.string.isRequired,
     closed: PropTypes.string.isRequired
@@ -43,9 +43,9 @@ class Filter extends React.Component {
   };
 
   handleSubmit = () => {
-    const { search } = this.props;
+    const { updateFilterParams } = this.props;
     const { answers, accepted, closed } = this.state;
-    search(
+    updateFilterParams(
       Map({
         answers,
         accepted,
@@ -63,8 +63,8 @@ class Filter extends React.Component {
               <div className="form-group">
                 Минимальное кол-во ответов:
                 <input
-                  min='0'
-                  max='1000'
+                  min="0"
+                  max="1000"
                   name="answers"
                   value={this.state.answers}
                   onChange={this.handleChange}

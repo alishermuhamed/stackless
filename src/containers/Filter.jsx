@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Filter as FilterComponent } from '../components';
-import search from '../actions/filterParams';
+import { updateFilterParams } from '../actions/questions';
 import { getAccepted, getClosed, getAnswers } from '../selectors/questions';
 
 const Filter = props => {
@@ -14,7 +14,7 @@ const Filter = props => {
 };
 
 Filter.propTypes = {
-  search: PropTypes.func.isRequired,
+  updateFilterParams: PropTypes.func.isRequired,
   answers: PropTypes.string.isRequired,
   accepted: PropTypes.string.isRequired,
   closed: PropTypes.string.isRequired
@@ -26,4 +26,4 @@ const mapStateToProps = state => ({
   closed: getClosed(state)
 });
 
-export default connect(mapStateToProps, { search })(Filter);
+export default connect(mapStateToProps, { updateFilterParams })(Filter);

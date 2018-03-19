@@ -3,6 +3,8 @@ export const getErrorMessage = state => state.getIn(['questions', 'error']);
 export const getFilterParams = state =>
   state.getIn(['questions', 'filterParams']);
 
+export const getSearch = state =>
+  state.getIn(['questions', 'filterParams', 'q']);
 export const getAnswers = state =>
   state.getIn(['questions', 'filterParams', 'answers']);
 export const getAccepted = state =>

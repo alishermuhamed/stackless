@@ -37,7 +37,6 @@ const filterParams = (
 ) => {
   switch (type) {
     case types.UPDATE_FILTER_PARAMS:
-    case types.REQUEST_QUESTIONS:
       return state.merge(payload);
     default:
       return state;
